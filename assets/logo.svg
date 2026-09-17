@@ -1,1 +1,9 @@
-
+<svg width="210" height="64" viewBox="0 0 210 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AVYRA">
+  <g fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9 48 L30 10 L51 48"/>
+    <path d="M19 31 H41"/>
+    <path d="M15 42 H45"/>
+  </g>
+  <text x="65" y="40" fill="white" font-family="Arial, sans-serif" font-size="27" font-weight="800" letter-spacing="2">AVYRA</text>
+  <circle cx="195" cy="15" r="4" fill="#2B73FF"/>
+</svg>
