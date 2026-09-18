@@ -1,0 +1,1 @@
+SOSTITUISCI SOLO index.html nel repository. Mantieni css/styles.css, js/ e assets/ già presenti. Il logo CG è incorporato direttamente nell'HTML, quindi non serve caricare un'immagine aggiuntiva.
