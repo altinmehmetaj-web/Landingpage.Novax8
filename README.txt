@@ -1,0 +1,1 @@
+Sostituisci index.html e aggiungi assets/images/creator-generation-logo.png. Mantieni il tuo css/styles.css, js/ e gli assets del VSL già presenti.
