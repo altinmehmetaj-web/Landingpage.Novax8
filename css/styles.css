@@ -308,5 +308,103 @@ h1,h2,h3{font-family:Manrope,sans-serif;line-height:.98;letter-spacing:-.045em}h
     }
 
 }
+/* =========================================
+   PROTOCOLLO 5X5
+========================================= */
+
+.protocol-title {
+  margin: 18px 0 8px;
+  font-size: clamp(46px, 6vw, 76px);
+  line-height: 0.95;
+  font-weight: 800;
+  letter-spacing: -2px;
+}
+
+.protocol-title span {
+  color: #a8ff20;
+}
+
+.protocol-subtitle {
+  margin: 18px 0 22px;
+  color: #ffffff;
+  font-size: 22px;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.protocol-text {
+  max-width: 780px;
+  margin: 0;
+  color: #85858c;
+  font-size: 18px;
+  line-height: 1.6;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.protocol-text strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.protocol-path {
+  margin: 24px 0 0;
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 1.4;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.protocol-objectives {
+  margin-top: 60px;
+  margin-bottom: 25px;
+  padding-top: 25px;
+  border-top: 1px solid rgba(255,255,255,0.15);
+
+  color: #a8ff20;
+  font-size: 17px;
+  line-height: 1.2;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+
+/* ===== MOBILE ===== */
+
+@media (max-width: 700px) {
+
+  .protocol-title {
+    font-size: 48px;
+    line-height: 0.95;
+    margin-bottom: 12px;
+  }
+
+  .protocol-subtitle {
+    font-size: 20px;
+    line-height: 1.2;
+    margin: 18px 0 20px;
+  }
+
+  .protocol-text {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+
+  .protocol-path {
+    margin-top: 22px;
+    font-size: 15px;
+    line-height: 1.4;
+  }
+
+  .protocol-objectives {
+    margin-top: 45px;
+    margin-bottom: 22px;
+    padding-top: 22px;
+    font-size: 15px;
+  }
+}
 
 
