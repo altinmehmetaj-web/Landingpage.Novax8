@@ -1841,3 +1841,38 @@ h3 span{
   }
 
 }
+/* FRASE HERO PIÙ EVIDENTE */
+
+.hero-copy-strong{
+  max-width:850px;
+  margin:28px auto 34px;
+  color:#f4f4f0;
+  font-size:23px;
+  font-weight:500;
+  line-height:1.5;
+  text-align:center;
+}
+
+.hero-copy-strong strong{
+  color:#b8ff3d;
+  font-weight:800;
+}
+
+.hero-copy-strong span{
+  color:#ffffff;
+  font-weight:700;
+}
+
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+  .hero-copy-strong{
+    max-width:95%;
+    margin:22px auto 27px;
+    font-size:20px;
+    line-height:1.45;
+  }
+
+}
