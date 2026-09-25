@@ -1754,3 +1754,49 @@ h3 span{
     letter-spacing:.045em
   }
 }
+/* PROTOCOLLO SOPRA IL VIDEO */
+
+.hero-protocol{
+  margin: 30px auto 26px;
+  text-align: center;
+}
+
+.hero-protocol strong{
+  display: block;
+  color: #b8ff3d;
+  font-family: "Manrope", sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: .03em;
+}
+
+.hero-protocol span{
+  display: block;
+  margin-top: 7px;
+  color: #f4f4f0;
+  font-family: "DM Sans", sans-serif;
+  font-size: 19px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+  .hero-protocol{
+    margin: 24px auto 20px;
+  }
+
+  .hero-protocol strong{
+    font-size: 21px;
+  }
+
+  .hero-protocol span{
+    margin-top: 5px;
+    font-size: 17px;
+  }
+
+}
