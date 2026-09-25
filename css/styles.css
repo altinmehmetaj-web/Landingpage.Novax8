@@ -1816,3 +1816,28 @@ h3 span{
   }
 
 }
+/* FIX PROTOCOLLO 5×5 MOBILE */
+
+@media(max-width:700px){
+
+  .protocol-title{
+    display:block;
+    width:100%;
+    max-width:100%;
+    white-space:nowrap;
+    font-size:28px !important;
+    line-height:1.05;
+    letter-spacing:-1px;
+    margin:12px 0 16px;
+  }
+
+}
+
+@media(max-width:390px){
+
+  .protocol-title{
+    font-size:25px !important;
+    letter-spacing:-1px;
+  }
+
+}
