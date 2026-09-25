@@ -1876,3 +1876,29 @@ h3 span{
   }
 
 }
+/* FRASE SOTTO IL TITOLO HERO */
+
+.hero-copy{
+  max-width:780px;
+  margin:28px auto 34px;
+  color:#e8e8e8;
+  font-size:20px;
+  font-weight:500;
+  line-height:1.5;
+  text-align:center;
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+  .hero-copy{
+    max-width:94%;
+    margin:22px auto 26px;
+    color:#eeeeee;
+    font-size:18px;
+    font-weight:500;
+    line-height:1.5;
+  }
+
+}
