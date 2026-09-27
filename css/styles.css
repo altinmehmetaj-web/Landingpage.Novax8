@@ -1902,8 +1902,13 @@ h3 span{
   }
 
 }
-/* HOSTINGER REACH - testo opzioni campo personalizzato */
+/* HOSTINGER REACH - forza in bianco il campo Tempo disponibile */
 [data-reach-form] label,
-[data-reach-form] label span {
+[data-reach-form] label *,
+[data-reach-form] [role="radiogroup"],
+[data-reach-form] [role="radiogroup"] *,
+[data-reach-form] input[type="radio"] + *,
+[data-reach-form] input[type="radio"] ~ * {
     color: #ffffff !important;
+    opacity: 1 !important;
 }
