@@ -38,29 +38,4 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Application form
-  const form = document.getElementById("applicationForm");
-  const message = document.getElementById("formMessage");
-
-  if (form) {
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-
-      const data = new FormData(form);
-      const name = data.get("name") || "";
-
-      // If an external application URL is configured, send the visitor there.
-      if (LANDING_CONFIG.applicationUrl) {
-        window.location.href = LANDING_CONFIG.applicationUrl;
-        return;
-      }
-
-      // Temporary front-end confirmation until the real form/CRM endpoint is connected.
-      message.hidden = false;
-      message.innerHTML = `<strong>Perfetto${name ? ", " + name : ""}.</strong><br>
-      Il modulo è pronto. Per ricevere realmente le candidature, collega ora questo form
-      a WhatsApp, CRM, email o a un modulo esterno nella configurazione.`;
-      form.reset();
-    });
-  }
 });
