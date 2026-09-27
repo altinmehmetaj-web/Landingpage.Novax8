@@ -1902,13 +1902,22 @@ h3 span{
   }
 
 }
-/* HOSTINGER REACH - forza in bianco il campo Tempo disponibile */
-[data-reach-form] label,
-[data-reach-form] label *,
-[data-reach-form] [role="radiogroup"],
-[data-reach-form] [role="radiogroup"] *,
-[data-reach-form] input[type="radio"] + *,
-[data-reach-form] input[type="radio"] ~ * {
-    color: #ffffff !important;
+/* HOSTINGER REACH - CAMPO TELEFONO */
+
+[data-reach-form] input[type="tel"] {
+    background-color: #ffffff !important;
+    color: #1a1a1a !important;
+    -webkit-text-fill-color: #1a1a1a !important;
+}
+
+[data-reach-form] input[type="tel"]::placeholder {
+    color: #777777 !important;
+    -webkit-text-fill-color: #777777 !important;
     opacity: 1 !important;
+}
+
+[data-reach-form] input[type="tel"]:focus {
+    background-color: #ffffff !important;
+    color: #1a1a1a !important;
+    -webkit-text-fill-color: #1a1a1a !important;
 }
