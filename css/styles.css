@@ -1902,22 +1902,4 @@ h3 span{
   }
 
 }
-/* HOSTINGER REACH - CAMPO TELEFONO */
 
-[data-reach-form] input[type="tel"] {
-    background-color: #ffffff !important;
-    color: #1a1a1a !important;
-    -webkit-text-fill-color: #1a1a1a !important;
-}
-
-[data-reach-form] input[type="tel"]::placeholder {
-    color: #777777 !important;
-    -webkit-text-fill-color: #777777 !important;
-    opacity: 1 !important;
-}
-
-[data-reach-form] input[type="tel"]:focus {
-    background-color: #ffffff !important;
-    color: #1a1a1a !important;
-    -webkit-text-fill-color: #1a1a1a !important;
-}
