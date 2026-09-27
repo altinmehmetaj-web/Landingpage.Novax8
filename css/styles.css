@@ -1902,3 +1902,8 @@ h3 span{
   }
 
 }
+/* HOSTINGER REACH - testo opzioni campo personalizzato */
+[data-reach-form] label,
+[data-reach-form] label span {
+    color: #ffffff !important;
+}
