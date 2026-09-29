@@ -2509,3 +2509,48 @@ h3 span{
     line-height:1.55;
   }
 }
+.payment-box{
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:flex-start !important;
+
+  margin-top:28px !important;
+  padding:22px !important;
+
+  border:1px solid rgba(156,255,46,.25) !important;
+  border-radius:15px !important;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(156,255,46,.07),
+      rgba(255,255,255,.015)
+    ) !important;
+}
+
+.payment-box small{
+  display:block !important;
+  margin-bottom:12px !important;
+
+  color:#85858d !important;
+  font-size:10px !important;
+  font-weight:700 !important;
+  letter-spacing:1.5px !important;
+}
+
+.payment-box strong{
+  display:block !important;
+
+  color:#9cff2e !important;
+  font-size:38px !important;
+  line-height:1 !important;
+  font-weight:800 !important;
+}
+
+.payment-box span{
+  display:block !important;
+  margin-top:12px !important;
+
+  color:#77777f !important;
+  font-size:12px !important;
+}
