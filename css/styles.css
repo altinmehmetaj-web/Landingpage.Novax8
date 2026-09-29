@@ -1902,4 +1902,355 @@ h3 span{
   }
 
 }
+/* =========================================================
+   TESTIMONIANZE REALI / CREATOR GENERATION
+========================================================= */
+
+.testimonials-real{
+  position:relative;
+  overflow:hidden;
+  background:#070709;
+}
+
+.testimonials-real::before{
+  content:"";
+  position:absolute;
+  width:650px;
+  height:650px;
+  right:-300px;
+  top:100px;
+  border-radius:50%;
+  background:
+    radial-gradient(
+      circle,
+      rgba(184,255,61,.08),
+      transparent 68%
+    );
+  pointer-events:none;
+}
+
+
+/* GRID */
+
+.real-testimonials-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
+  margin-top:50px;
+}
+
+
+/* CARD */
+
+.real-testimonial{
+  position:relative;
+  padding:32px;
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:20px;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.045),
+      rgba(255,255,255,.015)
+    );
+  transition:
+    transform .3s ease,
+    border-color .3s ease;
+}
+
+.real-testimonial:hover{
+  transform:translateY(-4px);
+  border-color:rgba(184,255,61,.28);
+}
+
+
+/* PERSONA */
+
+.real-person{
+  display:flex;
+  align-items:center;
+  gap:17px;
+  padding-bottom:25px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.real-person img{
+  width:68px;
+  height:68px;
+  flex:0 0 68px;
+  object-fit:cover;
+  border-radius:50%;
+  border:2px solid rgba(184,255,61,.45);
+}
+
+.real-person h3{
+  margin:0 0 6px;
+  color:#f4f4f0;
+  font-family:"Manrope",sans-serif;
+  font-size:21px;
+  font-weight:800;
+  line-height:1.15;
+  letter-spacing:-.02em;
+}
+
+.real-person span{
+  display:block;
+  color:#85858e;
+  font-size:12px;
+  line-height:1.4;
+}
+
+
+/* TESTO */
+
+.real-story{
+  min-height:115px;
+  margin:25px 0;
+  color:#a5a5ad;
+  font-size:16px;
+  line-height:1.65;
+}
+
+.real-story strong{
+  color:#f4f4f0;
+  font-weight:700;
+}
+
+
+/* RISULTATO */
+
+.real-result{
+  padding:22px;
+  border:1px solid rgba(184,255,61,.16);
+  border-radius:14px;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(184,255,61,.065),
+      rgba(127,92,255,.04)
+    );
+}
+
+.real-result small{
+  display:block;
+  margin-bottom:9px;
+  color:#777780;
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:.16em;
+}
+
+.real-result strong{
+  display:block;
+  color:#b8ff3d;
+  font-family:"Manrope",sans-serif;
+  font-size:38px;
+  font-weight:800;
+  line-height:1;
+  letter-spacing:-.04em;
+}
+
+.real-result span{
+  display:block;
+  margin-top:10px;
+  color:#74747d;
+  font-size:11px;
+}
+
+
+/* LINK PAGAMENTO */
+
+.payment-proof{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-top:17px;
+  padding:14px 2px 2px;
+  color:#d7d7da;
+  text-decoration:none;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.12em;
+}
+
+.payment-proof b{
+  color:#b8ff3d;
+  font-size:17px;
+  font-weight:400;
+}
+
+.payment-proof:hover{
+  color:#b8ff3d;
+}
+
+
+/* ULTIMA CARD DISPARI */
+
+.real-testimonial:last-child{
+  grid-column:1 / -1;
+  max-width:calc(50% - 9px);
+}
+
+
+/* CHIUSURA */
+
+.results-closing{
+  max-width:760px;
+  margin:85px auto 0;
+  text-align:center;
+}
+
+.results-closing > span{
+  display:block;
+  margin-bottom:17px;
+  color:#b8ff3d;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.18em;
+}
+
+.results-closing h3{
+  margin:0;
+  color:#f4f4f0;
+  font-family:"Manrope",sans-serif;
+  font-size:clamp(34px,4.5vw,58px);
+  font-weight:700;
+  line-height:1.02;
+  letter-spacing:-.045em;
+}
+
+.results-closing h3 strong{
+  color:#b8ff3d;
+  font-weight:800;
+}
+
+.results-closing p{
+  max-width:650px;
+  margin:23px auto 0;
+  color:#85858e;
+  font-size:16px;
+  line-height:1.65;
+}
+
+
+/* DISCLAIMER */
+
+.results-disclaimer{
+  max-width:850px;
+  margin:45px auto 0;
+  padding:20px 23px;
+  border-top:1px solid rgba(255,255,255,.08);
+  text-align:left;
+}
+
+.results-disclaimer b{
+  display:block;
+  margin-bottom:8px;
+  color:#777780;
+  font-size:9px;
+  letter-spacing:.14em;
+}
+
+.results-disclaimer p{
+  margin:0;
+  color:#5f5f68;
+  font-size:11px;
+  line-height:1.6;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media(max-width:850px){
+
+  .real-testimonials-grid{
+    grid-template-columns:1fr;
+  }
+
+  .real-testimonial:last-child{
+    grid-column:auto;
+    max-width:none;
+  }
+
+  .real-story{
+    min-height:auto;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:600px){
+
+  .real-testimonials-grid{
+    gap:14px;
+    margin-top:30px;
+  }
+
+  .real-testimonial{
+    padding:23px 21px;
+    border-radius:17px;
+  }
+
+  .real-person{
+    gap:14px;
+    padding-bottom:19px;
+  }
+
+  .real-person img{
+    width:58px;
+    height:58px;
+    flex-basis:58px;
+  }
+
+  .real-person h3{
+    font-size:18px;
+  }
+
+  .real-person span{
+    font-size:11px;
+  }
+
+  .real-story{
+    margin:20px 0;
+    font-size:15px;
+    line-height:1.55;
+  }
+
+  .real-result{
+    padding:18px;
+  }
+
+  .real-result strong{
+    font-size:34px;
+  }
+
+  .payment-proof{
+    margin-top:13px;
+  }
+
+  .results-closing{
+    margin-top:58px;
+  }
+
+  .results-closing h3{
+    font-size:38px;
+  }
+
+  .results-closing p{
+    margin-top:18px;
+    font-size:15px;
+    line-height:1.55;
+  }
+
+  .results-disclaimer{
+    margin-top:32px;
+    padding:18px 4px 0;
+  }
+
+}
 
