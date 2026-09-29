@@ -2477,3 +2477,17 @@ h3 span{
 
 }
 
+/* FORZA TESTO PROTOCOL PATH */
+.protocol-path{
+    color:#ffffff !important;
+    font-size:17px !important;
+    font-weight:800 !important;
+    opacity:1 !important;
+}
+
+.protocol-path strong,
+.protocol-path span{
+    color:#ffffff !important;
+    font-weight:800 !important;
+    opacity:1 !important;
+}
