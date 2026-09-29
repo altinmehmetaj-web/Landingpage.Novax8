@@ -39,3 +39,115 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 });
+
+/* =========================================================
+   COOKIE CONSENT - CREATOR GENERATION
+========================================================= */
+
+(function(){
+
+  const banner = document.getElementById("cookieBanner");
+  const accept = document.getElementById("cookieAccept");
+  const reject = document.getElementById("cookieReject");
+  const close = document.getElementById("cookieClose");
+
+  /* Se il banner non esiste, non fare nulla */
+  if (!banner || !accept || !reject || !close) {
+    return;
+  }
+
+  const consent =
+    localStorage.getItem("cg_cookie_consent");
+
+
+  function showBanner(){
+    banner.classList.add("is-visible");
+  }
+
+
+  function hideBanner(){
+    banner.classList.remove("is-visible");
+  }
+
+
+  function enableMarketing(){
+
+    /*
+      META PIXEL verrà attivato qui
+      SOLO dopo il consenso.
+    */
+
+    if (
+      typeof window.loadCreatorGenerationMetaPixel === "function"
+    ){
+      window.loadCreatorGenerationMetaPixel();
+    }
+
+  }
+
+
+  function acceptCookies(){
+
+    localStorage.setItem(
+      "cg_cookie_consent",
+      "accepted"
+    );
+
+    hideBanner();
+    enableMarketing();
+
+  }
+
+
+  function rejectCookies(){
+
+    localStorage.setItem(
+      "cg_cookie_consent",
+      "rejected"
+    );
+
+    hideBanner();
+
+  }
+
+
+  accept.addEventListener(
+    "click",
+    acceptCookies
+  );
+
+
+  reject.addEventListener(
+    "click",
+    rejectCookies
+  );
+
+
+  close.addEventListener(
+    "click",
+    rejectCookies
+  );
+
+
+  /* CONTROLLO DEL CONSENSO */
+
+  if (consent === "accepted") {
+
+    enableMarketing();
+
+  } else if (consent !== "rejected") {
+
+    showBanner();
+
+  }
+
+
+  /* RIAPRE LE PREFERENZE COOKIE */
+
+  window.openCookiePreferences = function(){
+
+    showBanner();
+
+  };
+
+})();
