@@ -1387,12 +1387,12 @@ h3 span{
 }
 
 .protocol-path{
-  margin:24px 0 0;
-  color:#9cff2e;
-  font-size:16px;
-  line-height:1.4;
-  font-weight:700;
-  letter-spacing:.5px
+    margin:24px 0 0;
+    color:#ffffff;
+    font-size:17px;
+    line-height:1.4;
+    font-weight:800;
+    letter-spacing:.5px;
 }
 
 .protocol-objectives{
