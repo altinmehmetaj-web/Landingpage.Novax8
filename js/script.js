@@ -42,109 +42,177 @@ document.addEventListener("DOMContentLoaded", () => {
 
 /* =========================================================
    COOKIE CONSENT - CREATOR GENERATION
+   Gestione separata Analytics (GA4) e Marketing (Meta Pixel)
 ========================================================= */
 
-(function(){
+(function () {
 
   const banner = document.getElementById("cookieBanner");
   const accept = document.getElementById("cookieAccept");
   const reject = document.getElementById("cookieReject");
   const close = document.getElementById("cookieClose");
 
-  /* Se il banner non esiste, non fare nulla */
   if (!banner || !accept || !reject || !close) {
     return;
   }
 
-  const consent =
-    localStorage.getItem("cg_cookie_consent");
+  const STORAGE_KEY = "cg_cookie_preferences";
 
 
-  function showBanner(){
+  /* =========================================================
+     MOSTRA / NASCONDE BANNER
+  ========================================================== */
+
+  function showBanner() {
     banner.classList.add("is-visible");
   }
 
-
-  function hideBanner(){
+  function hideBanner() {
     banner.classList.remove("is-visible");
   }
 
 
-  function enableMarketing(){
+  /* =========================================================
+     ATTIVA ANALYTICS
+  ========================================================== */
 
-    /*
-      META PIXEL verrà attivato qui
-      SOLO dopo il consenso.
-    */
+  function enableAnalytics() {
+
+    if (
+      typeof window.loadCreatorGenerationGA4 === "function"
+    ) {
+      window.loadCreatorGenerationGA4();
+    }
+
+  }
+
+
+  /* =========================================================
+     ATTIVA MARKETING
+  ========================================================== */
+
+  function enableMarketing() {
 
     if (
       typeof window.loadCreatorGenerationMetaPixel === "function"
-    ){
+    ) {
       window.loadCreatorGenerationMetaPixel();
     }
 
   }
 
 
-  function acceptCookies(){
+  /* =========================================================
+     SALVA LE PREFERENZE
+  ========================================================== */
+
+  function savePreferences(analytics, marketing) {
+
+    const preferences = {
+      necessary: true,
+      analytics: analytics,
+      marketing: marketing,
+      timestamp: new Date().toISOString()
+    };
 
     localStorage.setItem(
-      "cg_cookie_consent",
-      "accepted"
+      STORAGE_KEY,
+      JSON.stringify(preferences)
     );
 
+  }
+
+
+  /* =========================================================
+     ACCETTA TUTTO
+  ========================================================== */
+
+  function acceptAll() {
+
+    savePreferences(true, true);
+
     hideBanner();
+
+    enableAnalytics();
     enableMarketing();
 
   }
 
 
-  function rejectCookies(){
+  /* =========================================================
+     RIFIUTA TUTTO
+  ========================================================== */
 
-    localStorage.setItem(
-      "cg_cookie_consent",
-      "rejected"
-    );
+  function rejectAll() {
+
+    savePreferences(false, false);
 
     hideBanner();
 
   }
 
+
+  /* =========================================================
+     EVENTI
+  ========================================================== */
 
   accept.addEventListener(
     "click",
-    acceptCookies
+    acceptAll
   );
-
 
   reject.addEventListener(
     "click",
-    rejectCookies
+    rejectAll
   );
-
 
   close.addEventListener(
     "click",
-    rejectCookies
+    rejectAll
   );
 
 
-  /* CONTROLLO DEL CONSENSO */
+  /* =========================================================
+     LEGGE LE PREFERENZE SALVATE
+  ========================================================== */
 
-  if (consent === "accepted") {
+  let preferences = null;
 
-    enableMarketing();
+  try {
 
-  } else if (consent !== "rejected") {
+    preferences = JSON.parse(
+      localStorage.getItem(STORAGE_KEY)
+    );
 
-    showBanner();
+  } catch (error) {
+
+    preferences = null;
 
   }
 
 
-  /* RIAPRE LE PREFERENZE COOKIE */
+  if (!preferences) {
 
-  window.openCookiePreferences = function(){
+    showBanner();
+
+  } else {
+
+    if (preferences.analytics === true) {
+      enableAnalytics();
+    }
+
+    if (preferences.marketing === true) {
+      enableMarketing();
+    }
+
+  }
+
+
+  /* =========================================================
+     RIAPRE LE PREFERENZE COOKIE
+  ========================================================== */
+
+  window.openCookiePreferences = function () {
 
     showBanner();
 
