@@ -1489,6 +1489,7 @@ Si parte da un colloquio conoscitivo per capire situazione, tempo, competenze e 
 
 <!-- HOSTINGER REACH SCRIPT -->
 <script src="https://cdn-reach.hostinger.com/js/embed.js"></script>
+  
 <!-- =========================================================
      COOKIE CONSENT - CREATOR GENERATION
 ========================================================= -->
@@ -1498,7 +1499,8 @@ Si parte da un colloquio conoscitivo per capire situazione, tempo, competenze e 
   <button
     class="cg-cookie-close"
     id="cookieClose"
-    aria-label="Continua senza cookie di marketing"
+    type="button"
+    aria-label="Continua con i soli cookie necessari"
   >
     ×
   </button>
@@ -1515,18 +1517,106 @@ Si parte da un colloquio conoscitivo per capire situazione, tempo, competenze e 
 
     <p>
       Utilizziamo strumenti tecnici necessari al funzionamento
-      del sito e, solo con il tuo consenso, tecnologie di
-      marketing come Meta Pixel per misurare le campagne
-      e migliorare la comunicazione pubblicitaria.
+      del sito e, solo con il tuo consenso, strumenti Analytics
+      come Google Analytics 4 e strumenti di Marketing come
+      Meta Pixel.
     </p>
 
+    <!-- PANNELLO PERSONALIZZAZIONE -->
+
+    <div id="cookiePreferencesPanel" class="cg-cookie-preferences" hidden>
+
+      <div class="cg-cookie-option">
+
+        <div>
+          <strong>Cookie necessari</strong>
+          <p>
+            Necessari al funzionamento del sito e alla
+            memorizzazione delle tue preferenze.
+          </p>
+        </div>
+
+        <label>
+          <input
+            type="checkbox"
+            checked
+            disabled
+          >
+          Sempre attivi
+        </label>
+
+      </div>
+
+
+      <div class="cg-cookie-option">
+
+        <div>
+          <strong>Analytics</strong>
+          <p>
+            Google Analytics 4 ci aiuta a comprendere
+            come viene utilizzato il sito.
+          </p>
+        </div>
+
+        <label>
+          <input
+            type="checkbox"
+            id="cookieAnalytics"
+          >
+          Consenti
+        </label>
+
+      </div>
+
+
+      <div class="cg-cookie-option">
+
+        <div>
+          <strong>Marketing</strong>
+          <p>
+            Meta Pixel viene utilizzato per misurare
+            le campagne pubblicitarie e per attività
+            di advertising e remarketing.
+          </p>
+        </div>
+
+        <label>
+          <input
+            type="checkbox"
+            id="cookieMarketing"
+          >
+          Consenti
+        </label>
+
+      </div>
+
+      <button
+        type="button"
+        id="cookieSavePreferences"
+        class="cookie-btn cookie-btn-primary"
+      >
+        SALVA LE PREFERENZE
+      </button>
+
+    </div>
+
+
     <p class="cg-cookie-links">
-      <a href="privacy.html">Privacy Policy</a>
+
+      <a href="privacy.html">
+        Privacy Policy
+      </a>
+
       <span>·</span>
-      <a href="cookie.html">Cookie Policy</a>
+
+      <a href="cookie.html">
+        Cookie Policy
+      </a>
+
     </p>
 
   </div>
+
 
   <div class="cg-cookie-actions">
 
@@ -1535,7 +1625,15 @@ Si parte da un colloquio conoscitivo per capire situazione, tempo, competenze e 
       id="cookieReject"
       class="cookie-btn cookie-btn-secondary"
     >
-      RIFIUTA
+      RIFIUTA TUTTO
+    </button>
+
+    <button
+      type="button"
+      id="cookieCustomize"
+      class="cookie-btn cookie-btn-secondary"
+    >
+      PERSONALIZZA
     </button>
 
     <button
@@ -1543,7 +1641,7 @@ Si parte da un colloquio conoscitivo per capire situazione, tempo, competenze e 
       id="cookieAccept"
       class="cookie-btn cookie-btn-primary"
     >
-      ACCETTA
+      ACCETTA TUTTO
     </button>
 
   </div>
