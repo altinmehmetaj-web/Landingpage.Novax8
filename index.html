@@ -14,27 +14,25 @@
 
   <!-- =========================================================
        TRACKING CREATOR GENERATION
-       Google Analytics + Meta Pixel
-       vengono caricati SOLO dopo il consenso
+       GA4 e Meta Pixel vengono gestiti separatamente
+       in base al consenso dell'utente
   ========================================================== -->
 
   <script>
 
-    window.loadCreatorGenerationMetaPixel = function() {
+    /* =========================================================
+       GOOGLE ANALYTICS 4
+    ========================================================== */
 
-      /* Evita che GA4 e Meta Pixel vengano caricati due volte */
-      if (window.cgTrackingLoaded) return;
+    window.loadCreatorGenerationGA4 = function() {
 
-      window.cgTrackingLoaded = true;
+      if (window.cgGA4Loaded) return;
 
-
-      /* =====================================================
-         GOOGLE ANALYTICS 4
-      ====================================================== */
+      window.cgGA4Loaded = true;
 
       window.dataLayer = window.dataLayer || [];
 
-      window.gtag = function() {
+      window.gtag = window.gtag || function() {
         window.dataLayer.push(arguments);
       };
 
@@ -51,13 +49,24 @@
 
       window.gtag(
         'config',
-        'G-2Q5GPP9R94'
+        'G-2Q5GPP9R94',
+        {
+          'anonymize_ip': true
+        }
       );
 
+    };
 
-      /* =====================================================
-         META PIXEL
-      ====================================================== */
+
+    /* =========================================================
+       META PIXEL
+    ========================================================== */
+
+    window.loadCreatorGenerationMetaPixel = function() {
+
+      if (window.cgMetaLoaded) return;
+
+      window.cgMetaLoaded = true;
 
       !function(f,b,e,v,n,t,s) {
 
@@ -94,7 +103,6 @@
         'script',
         'https://connect.facebook.net/en_US/fbevents.js'
       );
-
 
       window.fbq(
         'init',
