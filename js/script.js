@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 /* =========================================================
    COOKIE CONSENT - CREATOR GENERATION
-   Gestione separata Analytics (GA4) e Marketing (Meta Pixel)
+   Analytics (GA4) + Marketing (Meta Pixel)
 ========================================================= */
 
 (function () {
@@ -52,15 +52,28 @@ document.addEventListener("DOMContentLoaded", () => {
   const reject = document.getElementById("cookieReject");
   const close = document.getElementById("cookieClose");
 
+  const customize = document.getElementById("cookieCustomize");
+  const preferencesPanel =
+    document.getElementById("cookiePreferencesPanel");
+
+  const analyticsCheckbox =
+    document.getElementById("cookieAnalytics");
+
+  const marketingCheckbox =
+    document.getElementById("cookieMarketing");
+
+  const saveButton =
+    document.getElementById("cookieSavePreferences");
+
+  const STORAGE_KEY = "cg_cookie_preferences";
+
   if (!banner || !accept || !reject || !close) {
     return;
   }
 
-  const STORAGE_KEY = "cg_cookie_preferences";
-
 
   /* =========================================================
-     MOSTRA / NASCONDE BANNER
+     MOSTRA / NASCONDE IL BANNER
   ========================================================== */
 
   function showBanner() {
@@ -73,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =========================================================
-     ATTIVA ANALYTICS
+     ATTIVA GOOGLE ANALYTICS 4
   ========================================================== */
 
   function enableAnalytics() {
@@ -88,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =========================================================
-     ATTIVA MARKETING
+     ATTIVA META PIXEL
   ========================================================== */
 
   function enableMarketing() {
@@ -103,22 +116,76 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =========================================================
-     SALVA LE PREFERENZE
+     SALVA PREFERENZE
   ========================================================== */
 
   function savePreferences(analytics, marketing) {
 
     const preferences = {
+
       necessary: true,
-      analytics: analytics,
-      marketing: marketing,
+
+      analytics: Boolean(analytics),
+
+      marketing: Boolean(marketing),
+
       timestamp: new Date().toISOString()
+
     };
 
     localStorage.setItem(
       STORAGE_KEY,
       JSON.stringify(preferences)
     );
+
+    return preferences;
+
+  }
+
+
+  /* =========================================================
+     LEGGE PREFERENZE
+  ========================================================== */
+
+  function getPreferences() {
+
+    try {
+
+      const stored =
+        localStorage.getItem(STORAGE_KEY);
+
+      if (!stored) {
+        return null;
+      }
+
+      return JSON.parse(stored);
+
+    } catch (error) {
+
+      return null;
+
+    }
+
+  }
+
+
+  /* =========================================================
+     APPLICA PREFERENZE
+  ========================================================== */
+
+  function applyPreferences(preferences) {
+
+    if (!preferences) {
+      return;
+    }
+
+    if (preferences.analytics === true) {
+      enableAnalytics();
+    }
+
+    if (preferences.marketing === true) {
+      enableMarketing();
+    }
 
   }
 
@@ -129,12 +196,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function acceptAll() {
 
-    savePreferences(true, true);
+    const preferences =
+      savePreferences(true, true);
+
+    if (analyticsCheckbox) {
+      analyticsCheckbox.checked = true;
+    }
+
+    if (marketingCheckbox) {
+      marketingCheckbox.checked = true;
+    }
+
+    applyPreferences(preferences);
 
     hideBanner();
-
-    enableAnalytics();
-    enableMarketing();
 
   }
 
@@ -146,6 +221,70 @@ document.addEventListener("DOMContentLoaded", () => {
   function rejectAll() {
 
     savePreferences(false, false);
+
+    if (analyticsCheckbox) {
+      analyticsCheckbox.checked = false;
+    }
+
+    if (marketingCheckbox) {
+      marketingCheckbox.checked = false;
+    }
+
+    hideBanner();
+
+  }
+
+
+  /* =========================================================
+     PERSONALIZZA
+  ========================================================== */
+
+  function openCustomize() {
+
+    if (!preferencesPanel) {
+      return;
+    }
+
+    const preferences = getPreferences();
+
+    if (analyticsCheckbox) {
+      analyticsCheckbox.checked =
+        preferences?.analytics === true;
+    }
+
+    if (marketingCheckbox) {
+      marketingCheckbox.checked =
+        preferences?.marketing === true;
+    }
+
+    preferencesPanel.hidden = false;
+
+  }
+
+
+  /* =========================================================
+     SALVA PERSONALIZZAZIONE
+  ========================================================== */
+
+  function saveCustomPreferences() {
+
+    const analytics =
+      analyticsCheckbox
+        ? analyticsCheckbox.checked
+        : false;
+
+    const marketing =
+      marketingCheckbox
+        ? marketingCheckbox.checked
+        : false;
+
+    const preferences =
+      savePreferences(
+        analytics,
+        marketing
+      );
+
+    applyPreferences(preferences);
 
     hideBanner();
 
@@ -171,48 +310,67 @@ document.addEventListener("DOMContentLoaded", () => {
     rejectAll
   );
 
+  if (customize) {
 
-  /* =========================================================
-     LEGGE LE PREFERENZE SALVATE
-  ========================================================== */
-
-  let preferences = null;
-
-  try {
-
-    preferences = JSON.parse(
-      localStorage.getItem(STORAGE_KEY)
+    customize.addEventListener(
+      "click",
+      openCustomize
     );
 
-  } catch (error) {
+  }
 
-    preferences = null;
+  if (saveButton) {
+
+    saveButton.addEventListener(
+      "click",
+      saveCustomPreferences
+    );
 
   }
 
 
-  if (!preferences) {
+  /* =========================================================
+     AVVIO
+  ========================================================== */
+
+  const savedPreferences =
+    getPreferences();
+
+  if (!savedPreferences) {
 
     showBanner();
 
   } else {
 
-    if (preferences.analytics === true) {
-      enableAnalytics();
-    }
-
-    if (preferences.marketing === true) {
-      enableMarketing();
-    }
+    applyPreferences(
+      savedPreferences
+    );
 
   }
 
 
   /* =========================================================
-     RIAPRE LE PREFERENZE COOKIE
+     RIAPRI PREFERENZE DAL FOOTER
   ========================================================== */
 
   window.openCookiePreferences = function () {
+
+    const preferences =
+      getPreferences();
+
+    if (analyticsCheckbox) {
+      analyticsCheckbox.checked =
+        preferences?.analytics === true;
+    }
+
+    if (marketingCheckbox) {
+      marketingCheckbox.checked =
+        preferences?.marketing === true;
+    }
+
+    if (preferencesPanel) {
+      preferencesPanel.hidden = false;
+    }
 
     showBanner();
 
