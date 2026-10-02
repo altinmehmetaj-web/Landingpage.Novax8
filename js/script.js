@@ -147,27 +147,49 @@ document.addEventListener("DOMContentLoaded", () => {
      LEGGE PREFERENZE
   ========================================================== */
 
-  function getPreferences() {
+ function getPreferences() {
 
-    try {
+  try {
 
-      const stored =
-        localStorage.getItem(STORAGE_KEY);
+    const stored =
+      localStorage.getItem(STORAGE_KEY);
 
-      if (!stored) {
-        return null;
-      }
-
-      return JSON.parse(stored);
-
-    } catch (error) {
-
+    if (!stored) {
       return null;
-
     }
+
+    const preferences = JSON.parse(stored);
+
+    if (!preferences.timestamp) {
+      localStorage.removeItem(STORAGE_KEY);
+      return null;
+    }
+
+    const consentDate =
+      new Date(preferences.timestamp);
+
+    const expiryDate =
+      new Date(consentDate);
+
+    expiryDate.setMonth(
+      expiryDate.getMonth() + 6
+    );
+
+    if (new Date() >= expiryDate) {
+      localStorage.removeItem(STORAGE_KEY);
+      return null;
+    }
+
+    return preferences;
+
+  } catch (error) {
+
+    localStorage.removeItem(STORAGE_KEY);
+    return null;
 
   }
 
+}
 
   /* =========================================================
      APPLICA PREFERENZE
