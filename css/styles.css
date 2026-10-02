@@ -2554,3 +2554,99 @@ h3 span{
   color:#77777f !important;
   font-size:12px !important;
 }
+/* =========================================================
+   WHATSAPP FLOATING BUTTON - CREATOR GENERATION
+========================================================= */
+
+.cg-whatsapp {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  text-decoration: none;
+  font-family: Arial, Helvetica, sans-serif;
+
+  filter: drop-shadow(0 8px 22px rgba(0,0,0,.35));
+}
+
+.cg-whatsapp-icon {
+  width: 58px;
+  height: 58px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #25D366;
+  color: #ffffff;
+
+  border-radius: 50%;
+
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease;
+}
+
+.cg-whatsapp-icon svg {
+  width: 34px;
+  height: 34px;
+}
+
+.cg-whatsapp-text {
+  background: #111113;
+  color: #ffffff;
+
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 12px;
+
+  padding: 10px 14px;
+
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+
+  transition:
+    transform .2s ease,
+    background .2s ease;
+}
+
+.cg-whatsapp:hover .cg-whatsapp-icon {
+  transform: scale(1.08);
+  box-shadow: 0 0 0 5px rgba(37,211,102,.15);
+}
+
+.cg-whatsapp:hover .cg-whatsapp-text {
+  background: #18181b;
+  transform: translateX(-3px);
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+  .cg-whatsapp {
+    right: 16px;
+    bottom: 16px;
+  }
+
+  .cg-whatsapp-icon {
+    width: 54px;
+    height: 54px;
+  }
+
+  .cg-whatsapp-icon svg {
+    width: 31px;
+    height: 31px;
+  }
+
+  .cg-whatsapp-text {
+    display: none;
+  }
+
+}
