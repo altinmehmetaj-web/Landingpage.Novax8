@@ -1,23 +1,132 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
   <title>Richiesta ricevuta | Creator Generation</title>
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2Q5GPP9R94"></script>
+  <meta name="robots" content="noindex, follow">
+
+  <link rel="icon"
+        type="image/png"
+        href="assets/favicon.png">
+
+
+  <!-- =========================================================
+       GOOGLE ANALYTICS 4
+       Caricato SOLO se l'utente ha dato consenso Analytics
+  ========================================================== -->
+
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-2Q5GPP9R94');
+  (function () {
+
+    const STORAGE_KEY = 'cg_cookie_preferences';
+
+    function hasAnalyticsConsent() {
+
+      try {
+
+        const stored =
+          localStorage.getItem(STORAGE_KEY);
+
+        if (!stored) {
+          return false;
+        }
+
+        const preferences =
+          JSON.parse(stored);
+
+        if (!preferences.timestamp) {
+          return false;
+        }
+
+        /* Verifica validità consenso: massimo 6 mesi */
+
+        const consentDate =
+          new Date(preferences.timestamp);
+
+        const expiryDate =
+          new Date(consentDate);
+
+        expiryDate.setMonth(
+          expiryDate.getMonth() + 6
+        );
+
+        if (new Date() >= expiryDate) {
+
+          localStorage.removeItem(STORAGE_KEY);
+
+          return false;
+
+        }
+
+        return preferences.analytics === true;
+
+      } catch (error) {
+
+        return false;
+
+      }
+
+    }
+
+
+    function loadGA4() {
+
+      if (!hasAnalyticsConsent()) {
+        return;
+      }
+
+      if (window.cgGA4Loaded) {
+        return;
+      }
+
+      window.cgGA4Loaded = true;
+
+      window.dataLayer =
+        window.dataLayer || [];
+
+      window.gtag =
+        window.gtag || function () {
+          window.dataLayer.push(arguments);
+        };
+
+      window.gtag('js', new Date());
+
+      const googleScript =
+        document.createElement('script');
+
+      googleScript.async = true;
+
+      googleScript.src =
+        'https://www.googletagmanager.com/gtag/js?id=G-2Q5GPP9R94';
+
+      document.head.appendChild(googleScript);
+
+      window.gtag(
+        'config',
+        'G-2Q5GPP9R94',
+        {
+          'anonymize_ip': true
+        }
+      );
+
+    }
+
+
+    loadGA4();
+
+  })();
   </script>
 
-  <link rel="icon" type="image/png" href="assets/favicon.png">
 
   <style>
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -89,8 +198,11 @@
     .button:hover {
       transform: translateY(-2px);
     }
+
   </style>
+
 </head>
+
 
 <body>
 
@@ -107,13 +219,23 @@
     <h1>Richiesta ricevuta.</h1>
 
     <p>
+
       Grazie per il tuo interesse in
-      <span class="highlight">Creator Generation.</span><br><br>
+      <span class="highlight">
+        Creator Generation.
+      </span>
+
+      <br><br>
 
       Abbiamo ricevuto correttamente i tuoi dati.
+
       Ti ricontatteremo a breve per organizzare
-      un <span class="highlight">colloquio conoscitivo gratuito</span>
+      un
+      <span class="highlight">
+        colloquio conoscitivo gratuito
+      </span>
       e spiegarti meglio come funziona il progetto.
+
     </p>
 
     <a href="/" class="button">
@@ -123,4 +245,5 @@
   </main>
 
 </body>
+
 </html>
