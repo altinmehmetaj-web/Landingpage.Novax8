@@ -2292,7 +2292,7 @@ h3 span{
 
 
 .cg-cookie-banner.is-visible{
-  display:flex;
+  display:flex !important;
 }
 
 
