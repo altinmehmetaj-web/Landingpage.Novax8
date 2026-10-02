@@ -2290,11 +2290,9 @@ h3 span{
   backdrop-filter:blur(20px);
 }
 
-
-.cg-cookie-banner.is-visible{
-  display:flex !important;
+#cookieBanner.cg-cookie-banner.is-visible {
+  display: flex !important;
 }
-
 
 .cg-cookie-content{
   flex:1;
