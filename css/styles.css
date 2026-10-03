@@ -2719,36 +2719,128 @@ h3 span{
 
 
 /* =========================================================
-   PERSONE REALI - MOBILE
+   PERSONE REALI - CREATOR GENERATION
 ========================================================= */
+
+.real-people-section {
+  position: relative;
+  overflow: hidden;
+  background: #050505;
+}
+
+.real-people-section .section-head {
+  position: relative;
+  z-index: 1;
+}
+
+.real-people-intro {
+  max-width: 720px;
+}
+
+
+/* FOTO 1 */
+
+.real-people-main {
+  width: 100%;
+  margin-top: 45px;
+  overflow: hidden;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.real-people-main img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+
+/* TESTO CENTRALE */
+
+.real-people-copy-center {
+  max-width: 760px;
+  margin: 55px auto;
+  text-align: center;
+}
+
+.real-people-label {
+  display: block;
+  margin-bottom: 18px;
+  color: #b8ff3d;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+}
+
+.real-people-copy-center h3 {
+  font-size: clamp(32px, 4vw, 52px);
+  line-height: 1.05;
+  margin-bottom: 22px;
+}
+
+.real-people-copy-center p {
+  max-width: 620px;
+  margin: 0 auto;
+  color: #85858f;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+
+/* FOTO 2 */
+
+.real-people-community {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.real-people-community img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+
+/* MOBILE */
 
 @media (max-width: 700px) {
 
-  .real-people-main {
-    margin-top: 30px;
-    border-radius: 16px;
-  }
-
-  .real-people-bottom {
-    grid-template-columns: 1fr;
-    gap: 25px;
-    margin-top: 25px;
-  }
-
+  .real-people-main,
   .real-people-community {
     border-radius: 16px;
   }
 
-  .real-people-copy {
-    padding: 5px 0 0;
+  .real-people-main {
+    margin-top: 30px;
   }
 
-  .real-people-copy h3 {
-    font-size: 34px;
+  .real-people-main img,
+  .real-people-community img {
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
   }
 
-  .real-people-copy p {
+  .real-people-copy-center {
+    margin: 38px auto;
+    padding: 0 8px;
+  }
+
+  .real-people-label {
+    font-size: 10px;
+    line-height: 1.5;
+  }
+
+  .real-people-copy-center h3 {
+    font-size: 32px;
+  }
+
+  .real-people-copy-center p {
     font-size: 15px;
+    line-height: 1.65;
   }
 
 }
