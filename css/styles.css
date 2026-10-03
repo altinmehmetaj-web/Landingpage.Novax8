@@ -2636,3 +2636,117 @@ h3 span{
     }
 }
 
+/* =========================================================
+   PERSONE REALI - CREATOR GENERATION
+========================================================= */
+
+.real-people-section {
+  position: relative;
+  overflow: hidden;
+  background: #050505;
+}
+
+.real-people-section .section-head {
+  position: relative;
+  z-index: 1;
+}
+
+.real-people-intro {
+  max-width: 720px;
+}
+
+.real-people-main {
+  width: 100%;
+  margin-top: 45px;
+  overflow: hidden;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.real-people-main img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.real-people-bottom {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 45px;
+  align-items: center;
+  margin-top: 35px;
+}
+
+.real-people-community {
+  overflow: hidden;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.real-people-community img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.real-people-copy {
+  padding: 20px 0;
+}
+
+.real-people-label {
+  display: block;
+  margin-bottom: 18px;
+  color: #b8ff3d;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+}
+
+.real-people-copy h3 {
+  font-size: clamp(32px, 4vw, 52px);
+  line-height: 1.05;
+  margin-bottom: 22px;
+}
+
+.real-people-copy p {
+  max-width: 480px;
+  color: #85858f;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+
+/* =========================================================
+   PERSONE REALI - MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+  .real-people-main {
+    margin-top: 30px;
+    border-radius: 16px;
+  }
+
+  .real-people-bottom {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    margin-top: 25px;
+  }
+
+  .real-people-community {
+    border-radius: 16px;
+  }
+
+  .real-people-copy {
+    padding: 5px 0 0;
+  }
+
+  .real-people-copy h3 {
+    font-size: 34px;
+  }
+
+  .real-people-copy p {
+    font-size: 15px;
+  }
+
+}
