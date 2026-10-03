@@ -2423,54 +2423,61 @@ h3 span{
 
 /* MOBILE */
 
-@media(max-width:700px){
+@media (max-width:700px) {
 
-  .cg-cookie-banner{
+  #cookieBanner.cg-cookie-banner {
     left:12px;
     right:12px;
     bottom:12px;
 
-    display:none;
+    width:auto;
+    max-width:none;
 
-    padding:
-      24px
-      20px
-      20px;
+    padding:24px 20px 20px;
 
     border-radius:16px;
+
+    align-items:stretch;
   }
 
-
-  .cg-cookie-banner.is-visible{
-    display:block;
+  #cookieBanner.cg-cookie-banner.is-visible {
+    display:block !important;
   }
 
+  .cg-cookie-content {
+    width:100%;
+  }
 
-  .cg-cookie-content h3{
-    padding-right:20px;
-
+  .cg-cookie-content h3 {
+    padding-right:30px;
     font-size:18px;
+    line-height:1.15;
   }
 
-
-  .cg-cookie-content p{
+  .cg-cookie-content p {
+    max-width:none;
     font-size:12px;
+    line-height:1.55;
   }
 
-
-  .cg-cookie-actions{
+  .cg-cookie-actions {
+    width:100%;
     margin-top:18px;
 
     display:grid;
-
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:1fr;
+    gap:10px;
   }
 
-
-  .cookie-btn{
+  .cookie-btn {
     width:100%;
-
     min-width:0;
+    box-sizing:border-box;
+  }
+
+  .cg-cookie-close {
+    top:10px;
+    right:12px;
   }
 
 }
