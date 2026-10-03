@@ -2666,7 +2666,8 @@ h3 span{
 .real-people-main img {
   display: block;
   width: 100%;
-  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
 }
 
 .real-people-bottom {
@@ -2686,7 +2687,8 @@ h3 span{
 .real-people-community img {
   display: block;
   width: 100%;
-  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
 }
 
 .real-people-copy {
