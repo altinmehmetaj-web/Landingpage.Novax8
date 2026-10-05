@@ -220,8 +220,10 @@ h3 span{
 }
 
 .hero-video-wrap{
-  max-width:980px;
-  margin:0 auto 28px
+  width:100%;
+  max-width:1200px;
+  margin:0 auto 28px;
+
 }
 
 .video-shell{
