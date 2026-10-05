@@ -220,9 +220,12 @@ h3 span{
 }
 
 .hero-video-wrap{
-  width:100%;
-  max-width:1200px;
+  width:min(1200px, calc(100vw - 40px));
+  max-width:none;
   margin:0 auto 28px;
+  position:relative;
+  left:50%;
+  transform:translateX(-50%);
 
 }
 
