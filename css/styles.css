@@ -234,11 +234,12 @@ h3 span{
   box-shadow:0 30px 100px rgba(0,0,0,.55)
 }
 
-.video-shell video{
+.video-shell video,
+.video-shell iframe{
   width:100%;
   height:100%;
   display:block;
-  object-fit:cover
+  border:0;
 }
 
 .video-placeholder{
