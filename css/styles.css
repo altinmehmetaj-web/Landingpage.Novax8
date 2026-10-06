@@ -2729,5 +2729,93 @@ h3 span{
   font-size: 16px;
   line-height: 1.7;
 }
+/* CTA RIPETUTA - CREATOR GENERATION */
 
+.cg-cta-repeat {
+  width: 100%;
+  text-align: center;
+  margin: 55px auto;
+  padding: 0 20px;
+}
+
+.cg-cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+
+  padding: 18px 22px 18px 34px;
+
+  background: linear-gradient(90deg, #b7ff25 0%, #9cff38 100%);
+  color: #050505;
+
+  border-radius: 999px;
+
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: .6px;
+  text-decoration: none;
+
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.cg-cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 35px rgba(183, 255, 37, .22);
+}
+
+.cg-cta-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 34px;
+  height: 34px;
+
+  border-radius: 50%;
+  background: #080808;
+  color: #b7ff25;
+
+  font-size: 20px;
+  line-height: 1;
+}
+
+.cg-cta-note {
+  margin: 12px 0 0;
+
+  font-size: 12px;
+  color: rgba(255,255,255,.48);
+}
+
+@media (max-width: 600px) {
+
+  .cg-cta-repeat {
+    margin: 38px auto;
+    padding: 0 16px;
+  }
+
+  .cg-cta-button {
+    width: 100%;
+    max-width: 360px;
+
+    padding: 15px 15px 15px 20px;
+
+    gap: 12px;
+
+    font-size: 12px;
+    letter-spacing: .3px;
+  }
+
+  .cg-cta-arrow {
+    flex: 0 0 32px;
+    width: 32px;
+    height: 32px;
+  }
+
+  .cg-cta-note {
+    max-width: 350px;
+    margin: 10px auto 0;
+    line-height: 1.5;
+  }
+}
 
