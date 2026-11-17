@@ -170,7 +170,10 @@
 
   fbq('init', PIXEL_ID);
   fbq('track', 'PageView');
-  fbq('track', 'Lead');
+ fbq('track', 'Lead', {
+  value: 1.00,
+  currency: 'EUR'
+});
 })();
 </script>
 <!-- FINE META PIXEL -->
