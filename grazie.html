@@ -3,12 +3,10 @@
 <html lang="it">
 
 <head>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Richiesta ricevuta | Creator Generation</title>
-
   <meta name="robots" content="noindex, follow">
 
   <link rel="icon" type="image/png" href="assets/favicon.png">
@@ -16,7 +14,6 @@
   <!-- GOOGLE ANALYTICS 4 -->
   <script>
   (function () {
-
     const STORAGE_KEY = 'cg_cookie_preferences';
 
     function hasAnalyticsConsent() {
@@ -37,19 +34,16 @@
         }
 
         return preferences.analytics === true;
-
       } catch (error) {
         return false;
       }
     }
 
     function loadGA4() {
-
       if (!hasAnalyticsConsent()) return;
       if (window.cgGA4Loaded) return;
 
       window.cgGA4Loaded = true;
-
       window.dataLayer = window.dataLayer || [];
 
       window.gtag = window.gtag || function () {
@@ -59,7 +53,6 @@
       window.gtag('js', new Date());
 
       const googleScript = document.createElement('script');
-
       googleScript.async = true;
       googleScript.src =
         'https://www.googletagmanager.com/gtag/js?id=G-2Q5GPP9R94';
@@ -72,7 +65,6 @@
     }
 
     loadGA4();
-
   })();
   </script>
 
@@ -83,31 +75,18 @@
 
     const PIXEL_ID = '1114627364248374';
     const STORAGE_KEY = 'cg_cookie_preferences';
+    const LEAD_KEY = 'cg_lead_sent';
 
-    // Verifica che l'accesso provenga dal percorso
-    // di reindirizzamento configurato in Hostinger Reach.
-    const params = new URLSearchParams(window.location.search);
-
-    if (params.get('lead') !== '1') {
-      return;
-    }
-
-    // Verifica consenso marketing
     function hasMarketingConsent() {
-
       try {
-
         const stored = localStorage.getItem(STORAGE_KEY);
-
         if (!stored) return false;
 
         const preferences = JSON.parse(stored);
-
         if (!preferences.timestamp) return false;
 
         const consentDate = new Date(preferences.timestamp);
         const expiryDate = new Date(consentDate);
-
         expiryDate.setMonth(expiryDate.getMonth() + 6);
 
         if (new Date() >= expiryDate) {
@@ -122,29 +101,11 @@
       }
     }
 
+    // Senza consenso marketing non carichiamo il Pixel
     if (!hasMarketingConsent()) return;
-
-    // Evita che un aggiornamento della pagina
-    // ripeta immediatamente lo stesso evento.
-    // Rimuove il parametro dopo aver verificato
-    // il percorso e prima di inviare l'evento.
-
-    if (window.history && window.history.replaceState) {
-
-      const cleanUrl =
-        window.location.pathname +
-        window.location.hash;
-
-      window.history.replaceState(
-        {},
-        document.title,
-        cleanUrl
-      );
-    }
 
     // Caricamento Meta Pixel
     !function(f,b,e,v,n,t,s) {
-
       if (f.fbq) return;
 
       n = f.fbq = function() {
@@ -177,14 +138,46 @@
     // Inizializzazione Pixel
     fbq('init', PIXEL_ID);
 
-    // Visualizzazione pagina
+    // PageView: viene registrato anche senza parametro lead
     fbq('track', 'PageView');
 
-    // Conversione Lead
+    // Verifica se l'URL proviene dal percorso di conferma
+    const params = new URLSearchParams(window.location.search);
+
+    if (params.get('lead') !== '1') {
+      return;
+    }
+
+    // Controllo anti-duplicazione nella stessa sessione
+    try {
+      if (sessionStorage.getItem(LEAD_KEY) === '1') {
+        return;
+      }
+    } catch (error) {
+      return;
+    }
+
+    // Registrazione Lead
     fbq('track', 'Lead', {
       value: 1.00,
       currency: 'EUR'
     });
+
+    // Memorizza l'evento già inviato
+    try {
+      sessionStorage.setItem(LEAD_KEY, '1');
+    } catch (error) {
+      // Nessuna azione
+    }
+
+    // Pulisce l'URL senza ricaricare la pagina
+    if (window.history && window.history.replaceState) {
+      window.history.replaceState(
+        {},
+        document.title,
+        window.location.pathname
+      );
+    }
 
   })();
   </script>
@@ -192,7 +185,6 @@
 
 
   <style>
-
     * {
       box-sizing: border-box;
       margin: 0;
@@ -264,7 +256,6 @@
     .button:hover {
       transform: translateY(-2px);
     }
-
   </style>
 
 </head>
@@ -284,9 +275,7 @@
     <h1>Richiesta ricevuta.</h1>
 
     <p>
-
       Grazie per il tuo interesse in
-
       <span class="highlight">
         Creator Generation.
       </span>
@@ -297,13 +286,10 @@
 
       Ti ricontatteremo a breve per organizzare
       un
-
       <span class="highlight">
         colloquio conoscitivo gratuito
       </span>
-
       e spiegarti meglio come funziona il progetto.
-
     </p>
 
     <a href="/" class="button">
