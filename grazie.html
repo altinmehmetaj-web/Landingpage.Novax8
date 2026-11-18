@@ -1,123 +1,75 @@
+
 <!DOCTYPE html>
 <html lang="it">
 
 <head>
 
   <meta charset="UTF-8">
-
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Richiesta ricevuta | Creator Generation</title>
 
   <meta name="robots" content="noindex, follow">
 
-  <link rel="icon"
-        type="image/png"
-        href="assets/favicon.png">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
 
-
-  <!-- =========================================================
-       GOOGLE ANALYTICS 4
-       Caricato SOLO se l'utente ha dato consenso Analytics
-  ========================================================== -->
-
+  <!-- GOOGLE ANALYTICS 4 -->
   <script>
   (function () {
 
     const STORAGE_KEY = 'cg_cookie_preferences';
 
     function hasAnalyticsConsent() {
-
       try {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (!stored) return false;
 
-        const stored =
-          localStorage.getItem(STORAGE_KEY);
+        const preferences = JSON.parse(stored);
+        if (!preferences.timestamp) return false;
 
-        if (!stored) {
-          return false;
-        }
-
-        const preferences =
-          JSON.parse(stored);
-
-        if (!preferences.timestamp) {
-          return false;
-        }
-
-        /* Verifica validità consenso: massimo 6 mesi */
-
-        const consentDate =
-          new Date(preferences.timestamp);
-
-        const expiryDate =
-          new Date(consentDate);
-
-        expiryDate.setMonth(
-          expiryDate.getMonth() + 6
-        );
+        const consentDate = new Date(preferences.timestamp);
+        const expiryDate = new Date(consentDate);
+        expiryDate.setMonth(expiryDate.getMonth() + 6);
 
         if (new Date() >= expiryDate) {
-
           localStorage.removeItem(STORAGE_KEY);
-
           return false;
-
         }
 
         return preferences.analytics === true;
 
       } catch (error) {
-
         return false;
-
       }
-
     }
-
 
     function loadGA4() {
 
-      if (!hasAnalyticsConsent()) {
-        return;
-      }
-
-      if (window.cgGA4Loaded) {
-        return;
-      }
+      if (!hasAnalyticsConsent()) return;
+      if (window.cgGA4Loaded) return;
 
       window.cgGA4Loaded = true;
 
-      window.dataLayer =
-        window.dataLayer || [];
+      window.dataLayer = window.dataLayer || [];
 
-      window.gtag =
-        window.gtag || function () {
-          window.dataLayer.push(arguments);
-        };
+      window.gtag = window.gtag || function () {
+        window.dataLayer.push(arguments);
+      };
 
       window.gtag('js', new Date());
 
-      const googleScript =
-        document.createElement('script');
+      const googleScript = document.createElement('script');
 
       googleScript.async = true;
-
       googleScript.src =
         'https://www.googletagmanager.com/gtag/js?id=G-2Q5GPP9R94';
 
       document.head.appendChild(googleScript);
 
-      window.gtag(
-        'config',
-        'G-2Q5GPP9R94',
-        {
-          'anonymize_ip': true
-        }
-      );
-
+      window.gtag('config', 'G-2Q5GPP9R94', {
+        anonymize_ip: true
+      });
     }
-
 
     loadGA4();
 
@@ -125,58 +77,119 @@
   </script>
 
 
-<!-- META PIXEL - CREATOR GENERATION -->
-<script>
-(function () {
-  const PIXEL_ID = '1114627364248374';
-  const STORAGE_KEY = 'cg_cookie_preferences';
+  <!-- META PIXEL - CREATOR GENERATION -->
+  <script>
+  (function () {
 
-  function hasMarketingConsent() {
-    try {
-      const stored = localStorage.getItem(STORAGE_KEY);
-      if (!stored) return false;
+    const PIXEL_ID = '1114627364248374';
+    const STORAGE_KEY = 'cg_cookie_preferences';
 
-      const preferences = JSON.parse(stored);
-      if (!preferences.timestamp) return false;
+    // Verifica che l'accesso provenga dal percorso
+    // di reindirizzamento configurato in Hostinger Reach.
+    const params = new URLSearchParams(window.location.search);
 
-      const consentDate = new Date(preferences.timestamp);
-      const expiryDate = new Date(consentDate);
-      expiryDate.setMonth(expiryDate.getMonth() + 6);
+    if (params.get('lead') !== '1') {
+      return;
+    }
 
-      if (new Date() >= expiryDate) {
-        localStorage.removeItem(STORAGE_KEY);
+    // Verifica consenso marketing
+    function hasMarketingConsent() {
+
+      try {
+
+        const stored = localStorage.getItem(STORAGE_KEY);
+
+        if (!stored) return false;
+
+        const preferences = JSON.parse(stored);
+
+        if (!preferences.timestamp) return false;
+
+        const consentDate = new Date(preferences.timestamp);
+        const expiryDate = new Date(consentDate);
+
+        expiryDate.setMonth(expiryDate.getMonth() + 6);
+
+        if (new Date() >= expiryDate) {
+          localStorage.removeItem(STORAGE_KEY);
+          return false;
+        }
+
+        return preferences.marketing === true;
+
+      } catch (error) {
         return false;
       }
-
-      return preferences.marketing === true;
-    } catch (error) {
-      return false;
     }
-  }
 
-  if (!hasMarketingConsent()) return;
+    if (!hasMarketingConsent()) return;
 
-  !function(f,b,e,v,n,t,s) {
-    if(f.fbq) return;
-    n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;
-    n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s);
-  }(window,document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
+    // Evita che un aggiornamento della pagina
+    // ripeta immediatamente lo stesso evento.
+    // Rimuove il parametro dopo aver verificato
+    // il percorso e prima di inviare l'evento.
 
-  fbq('init', PIXEL_ID);
-  fbq('track', 'PageView');
- fbq('track', 'Lead', {
-  value: 1.00,
-  currency: 'EUR'
-});
-})();
-</script>
-<!-- FINE META PIXEL -->
+    if (window.history && window.history.replaceState) {
+
+      const cleanUrl =
+        window.location.pathname +
+        window.location.hash;
+
+      window.history.replaceState(
+        {},
+        document.title,
+        cleanUrl
+      );
+    }
+
+    // Caricamento Meta Pixel
+    !function(f,b,e,v,n,t,s) {
+
+      if (f.fbq) return;
+
+      n = f.fbq = function() {
+        n.callMethod
+          ? n.callMethod.apply(n, arguments)
+          : n.queue.push(arguments);
+      };
+
+      if (!f._fbq) f._fbq = n;
+
+      n.push = n;
+      n.loaded = true;
+      n.version = '2.0';
+      n.queue = [];
+
+      t = b.createElement(e);
+      t.async = true;
+      t.src = v;
+
+      s = b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t, s);
+
+    }(
+      window,
+      document,
+      'script',
+      'https://connect.facebook.net/en_US/fbevents.js'
+    );
+
+    // Inizializzazione Pixel
+    fbq('init', PIXEL_ID);
+
+    // Visualizzazione pagina
+    fbq('track', 'PageView');
+
+    // Conversione Lead
+    fbq('track', 'Lead', {
+      value: 1.00,
+      currency: 'EUR'
+    });
+
+  })();
+  </script>
+  <!-- FINE META PIXEL -->
+
 
   <style>
 
@@ -256,7 +269,6 @@
 
 </head>
 
-
 <body>
 
   <main class="thank-you">
@@ -274,6 +286,7 @@
     <p>
 
       Grazie per il tuo interesse in
+
       <span class="highlight">
         Creator Generation.
       </span>
@@ -284,9 +297,11 @@
 
       Ti ricontatteremo a breve per organizzare
       un
+
       <span class="highlight">
         colloquio conoscitivo gratuito
       </span>
+
       e spiegarti meglio come funziona il progetto.
 
     </p>
