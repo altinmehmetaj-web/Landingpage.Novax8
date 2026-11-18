@@ -75,6 +75,7 @@
 
   })();
   </script>
+  <!-- FINE GOOGLE ANALYTICS 4 -->
 
 
   <!-- META PIXEL - CREATOR GENERATION -->
@@ -83,19 +84,28 @@
 
     const PIXEL_ID = '1114627364248374';
     const STORAGE_KEY = 'cg_cookie_preferences';
-    const LEAD_KEY = 'cg_lead_sent';
 
+    // Controlla se la visita arriva dal reindirizzamento
+    // configurato in Hostinger Reach
+    const params = new URLSearchParams(window.location.search);
+    const isLead = params.get('lead') === '1';
+
+    // Verifica consenso marketing
     function hasMarketingConsent() {
 
       try {
+
         const stored = localStorage.getItem(STORAGE_KEY);
+
         if (!stored) return false;
 
         const preferences = JSON.parse(stored);
+
         if (!preferences.timestamp) return false;
 
         const consentDate = new Date(preferences.timestamp);
         const expiryDate = new Date(consentDate);
+
         expiryDate.setMonth(expiryDate.getMonth() + 6);
 
         if (new Date() >= expiryDate) {
@@ -110,7 +120,7 @@
       }
     }
 
-    // Rispetta il consenso marketing
+    // Se manca il consenso marketing, non carica il Pixel
     if (!hasMarketingConsent()) return;
 
     // Caricamento Meta Pixel
@@ -148,40 +158,16 @@
     // Inizializzazione Pixel
     fbq('init', PIXEL_ID);
 
-    // PageView: registrato sulla pagina con consenso
+    // Registrazione visualizzazione pagina
     fbq('track', 'PageView');
 
-    // Lead: solo se presente il parametro lead=1
-    const params = new URLSearchParams(window.location.search);
-
-    if (params.get('lead') !== '1') {
-      return;
-    }
-
-    // Evita duplicati nella stessa sessione
-    try {
-      if (sessionStorage.getItem(LEAD_KEY) === '1') {
-        return;
-      }
-    } catch (error) {
-      return;
-    }
-
-    // Invio evento Lead
-    fbq('track', 'Lead', {
-      value: 1.00,
-      currency: 'EUR'
-    });
-
-    // Memorizza l'evento già inviato
-    try {
-      sessionStorage.setItem(LEAD_KEY, '1');
-    } catch (error) {
-      // Nessuna azione
-    }
+    // Se non arriva dal modulo, non invia Lead
+    if (!isLead) return;
 
     // Rimuove il parametro dall'indirizzo
+    // per evitare una nuova conversione al refresh
     if (window.history && window.history.replaceState) {
+
       window.history.replaceState(
         {},
         document.title,
@@ -189,11 +175,18 @@
       );
     }
 
+    // Registrazione conversione Lead
+    fbq('track', 'Lead', {
+      value: 1.00,
+      currency: 'EUR'
+    });
+
   })();
   </script>
   <!-- FINE META PIXEL -->
 
 
+  <!-- STILE PAGINA -->
   <style>
 
     * {
@@ -269,8 +262,10 @@
     }
 
   </style>
+  <!-- FINE STILE PAGINA -->
 
 </head>
+
 
 <body>
 
