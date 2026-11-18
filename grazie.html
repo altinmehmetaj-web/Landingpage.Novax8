@@ -3,10 +3,12 @@
 <html lang="it">
 
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Richiesta ricevuta | Creator Generation</title>
+
   <meta name="robots" content="noindex, follow">
 
   <link rel="icon" type="image/png" href="assets/favicon.png">
@@ -14,6 +16,7 @@
   <!-- GOOGLE ANALYTICS 4 -->
   <script>
   (function () {
+
     const STORAGE_KEY = 'cg_cookie_preferences';
 
     function hasAnalyticsConsent() {
@@ -34,16 +37,19 @@
         }
 
         return preferences.analytics === true;
+
       } catch (error) {
         return false;
       }
     }
 
     function loadGA4() {
+
       if (!hasAnalyticsConsent()) return;
       if (window.cgGA4Loaded) return;
 
       window.cgGA4Loaded = true;
+
       window.dataLayer = window.dataLayer || [];
 
       window.gtag = window.gtag || function () {
@@ -53,6 +59,7 @@
       window.gtag('js', new Date());
 
       const googleScript = document.createElement('script');
+
       googleScript.async = true;
       googleScript.src =
         'https://www.googletagmanager.com/gtag/js?id=G-2Q5GPP9R94';
@@ -65,6 +72,7 @@
     }
 
     loadGA4();
+
   })();
   </script>
 
@@ -78,6 +86,7 @@
     const LEAD_KEY = 'cg_lead_sent';
 
     function hasMarketingConsent() {
+
       try {
         const stored = localStorage.getItem(STORAGE_KEY);
         if (!stored) return false;
@@ -101,11 +110,12 @@
       }
     }
 
-    // Senza consenso marketing non carichiamo il Pixel
+    // Rispetta il consenso marketing
     if (!hasMarketingConsent()) return;
 
     // Caricamento Meta Pixel
     !function(f,b,e,v,n,t,s) {
+
       if (f.fbq) return;
 
       n = f.fbq = function() {
@@ -138,17 +148,17 @@
     // Inizializzazione Pixel
     fbq('init', PIXEL_ID);
 
-    // PageView: viene registrato anche senza parametro lead
+    // PageView: registrato sulla pagina con consenso
     fbq('track', 'PageView');
 
-    // Verifica se l'URL proviene dal percorso di conferma
+    // Lead: solo se presente il parametro lead=1
     const params = new URLSearchParams(window.location.search);
 
     if (params.get('lead') !== '1') {
       return;
     }
 
-    // Controllo anti-duplicazione nella stessa sessione
+    // Evita duplicati nella stessa sessione
     try {
       if (sessionStorage.getItem(LEAD_KEY) === '1') {
         return;
@@ -157,7 +167,7 @@
       return;
     }
 
-    // Registrazione Lead
+    // Invio evento Lead
     fbq('track', 'Lead', {
       value: 1.00,
       currency: 'EUR'
@@ -170,12 +180,12 @@
       // Nessuna azione
     }
 
-    // Pulisce l'URL senza ricaricare la pagina
+    // Rimuove il parametro dall'indirizzo
     if (window.history && window.history.replaceState) {
       window.history.replaceState(
         {},
         document.title,
-        window.location.pathname
+        window.location.pathname + window.location.hash
       );
     }
 
@@ -185,6 +195,7 @@
 
 
   <style>
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -256,6 +267,7 @@
     .button:hover {
       transform: translateY(-2px);
     }
+
   </style>
 
 </head>
@@ -275,7 +287,9 @@
     <h1>Richiesta ricevuta.</h1>
 
     <p>
+
       Grazie per il tuo interesse in
+
       <span class="highlight">
         Creator Generation.
       </span>
@@ -286,10 +300,13 @@
 
       Ti ricontatteremo a breve per organizzare
       un
+
       <span class="highlight">
         colloquio conoscitivo gratuito
       </span>
+
       e spiegarti meglio come funziona il progetto.
+
     </p>
 
     <a href="/" class="button">
